@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Prime Factorization Test</title>
+		<title>Prime Factorization Test (JP)</title>
 		<link rel="stylesheet" href="styles.css">
 		<script src="calcPrimeFactorization.js"></script>
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 		<script>
-			// Function to parse input string into an array of numbers
+			// 入力文字列を数値の配列に変換する関数
 			function parseNumbers(input) {
 				let parts = input.split(/,\s*/);
 				let numbers = parts.map(Number);
 				return numbers;
 			}
 
-			// Function to convert prime factorization result to MathJax format
+			// 素因数分解の結果をMathJax形式に変換する関数
 			function toMathJax(pf) {
 				let result = "";
 				for (const factor in pf.primeFactorsCount) {
@@ -26,22 +26,22 @@
 						result += factor + "^{" + pf.primeFactorsCount[factor] + "} \\times ";
 					}
 				}
-				return result.slice(0, -8); // Remove the last " \\times "
+				return result.slice(0, -8); // 最後の " \\times " を削除
 			}
 
-			// Function to process input and display results
+			// 入力を処理し、結果を表示する関数
 			function processInput() {
 				let input = document.getElementById('numberInput').value;
 				let numbers = parseNumbers(input);
-				//document.getElementById('result').innerText = 'Array: ' + JSON.stringify(numbers);
+				//document.getElementById('result').innerText = '配列: ' + JSON.stringify(numbers);
 
-				// Prime factorization processing
+				// 素因数分解の処理
 				let primeFactorizations = numbers.map(number => {
 					let pf = new PrimeFactorization(number);
 					return number + ": " + toMathJax(pf);
 				});
 				
-				// Display prime factorization results using MathJax
+				// MathJaxを使用して素因数分解結果を表示
 				document.getElementById('primeResult').innerHTML = '';
 				primeFactorizations.forEach(result => {
 					let p = document.createElement('p');
@@ -62,22 +62,22 @@
 				let button = document.getElementById('processButton');
 				button.addEventListener('click', processInput);
 
-				// Set initial value
+				// 初期値を設定
 				document.getElementById('numberInput').value = '2016,2017,2018,2019,2020,2021,2022,2023,2024,2025';
 
-				//
+				// 初期値で処理を実行
 				processInput();
 			});
 		</script>
 	</head>
 	<body>
 		<div id="button-container">
-			<button id="back-to-parent-site-button" onclick="location.href='../math/'">Back to Home</button>
+			<button id="back-to-parent-site-button" onclick="location.href='../math/'">Go to Home</button>
 		</div>
-		<h1>Prime Factorization</h1>
-		<p>Please enter numbers separated by commas and spaces:</p>
-		<input type="text" id="numberInput" placeholder="e.g. 1, 2, 3, 4.5, 6.78">
-		<button id="processButton">Execute</button>
+		<h1>素因数分解</h1>
+		<p>カンマとスペースで区切られた数値を入力してください:</p>
+		<input type="text" id="numberInput" placeholder="例: 1, 2, 3, 4.5, 6.78">
+		<button id="processButton">実行</button>
 		<p id="result"></p>
 		<div id="primeResult"></div>
 	</body>
