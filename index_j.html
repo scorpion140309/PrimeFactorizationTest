@@ -19,9 +19,12 @@
 		<script>
 			// 入力文字列を数値の配列に変換する関数
 			function parseNumbers(input) {
-				let parts = input.split(/,\s*/);
-				let numbers = parts.map(Number);
-				return numbers;
+				let parts = input.split(/,\s*|\s+/);
+				let numbers = parts.map(num => {
+					let parsedNum = parseInt(num, 10);
+					return parsedNum > 0 ? parsedNum : 0;
+				});
+				return numbers.filter(num => num > 0); // 正の整数のみをフィルタリング
 			}
 
 			// 素因数分解の結果をMathJax形式に変換する関数
@@ -86,7 +89,7 @@
 			<button id="back-to-parent-site-button" onclick="location.href='../math/index_j.html'">Go to Home</button>
 		</div>
 		<h1>素因数分解</h1>
-		<p>カンマとスペースで区切られた数値を入力してください:</p>
+		<p>カンマ、あるいは半角スペースで区切られた数値を入力してください:</p>
 		<input type="text" id="numberInput" placeholder="例: 1, 2, 3, 4.5, 6.78">
 		<button id="processButton">実行</button>
 		<p id="result"></p>

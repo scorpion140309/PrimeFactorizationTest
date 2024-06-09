@@ -19,9 +19,12 @@
 		<script>
 			// Function to parse input string into an array of numbers
 			function parseNumbers(input) {
-				let parts = input.split(/,\s*/);
-				let numbers = parts.map(Number);
-				return numbers;
+				let parts = input.split(/,\s*|\s+/);
+				let numbers = parts.map(num => {
+					let parsedNum = parseInt(num, 10);
+					return parsedNum > 0 ? parsedNum : 0;
+				});
+				return numbers.filter(num => num > 0); // 正の整数のみをフィルタリング
 			}
 
 			// Function to convert prime factorization result to MathJax format
@@ -86,7 +89,7 @@
 			<button id="back-to-parent-site-button" onclick="location.href='../math/'">Back to Home</button>
 		</div>
 		<h1>Prime Factorization</h1>
-		<p>Please enter numbers separated by commas and spaces:</p>
+		<p>Please enter numbers separated by commas or spaces:</p>
 		<input type="text" id="numberInput" placeholder="e.g. 1, 2, 3, 4.5, 6.78">
 		<button id="processButton">Execute</button>
 		<p id="result"></p>
