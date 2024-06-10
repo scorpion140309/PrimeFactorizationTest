@@ -24,7 +24,7 @@
 					let parsedNum = parseInt(num, 10);
 					return parsedNum > 0 ? parsedNum : 0;
 				});
-				return numbers.filter(num => num > 0); // 正の整数のみをフィルタリング
+				return numbers.filter(num => num > 0); // Return only positive integers
 			}
 
 			// Function to convert prime factorization result to MathJax format
@@ -90,7 +90,7 @@
 		</div>
 		<h1>Prime Factorization</h1>
 		<p>Please enter numbers separated by commas or spaces:</p>
-		<input type="text" id="numberInput" placeholder="e.g. 1, 2, 3, 4.5, 6.78">
+		<input type="text" id="numberInput" placeholder="e.g. 1, 20, 36, 1000">
 		<button id="processButton">Execute</button>
 		<p id="result"></p>
 		<div id="primeResult"></div>
