@@ -37,6 +37,6 @@ class PrimeFactorization {
         for (const factor in this.primeFactorsCount) {
             result += factor + "^{" + this.primeFactorsCount[factor] + "} \\times ";
         }
-        return result.slice(0, -8); // 最後の " \\times " を削除
+        return result.slice(0, -8); // delete " \\times " at the end of the string
     }
 }
